@@ -43,6 +43,9 @@
 
 &lt;p&gt;{% img /images/2014-12-08/devsettings.png 200 %} {% img /images/2014-12-08/Terminal.png 200 %}&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&#34;../img/20141208/devsettings.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../img/20141208/terminal.png&#34;&gt;&lt;/p&gt;
+
 &lt;p&gt;開発者オプションの&lt;code&gt;Local Terminal&lt;/code&gt;（左画像）にチェックを入れるとランチャーにアイコンが表示されるのでおもむろにタップすると、CyanogenModのTerminalのようなTerminalが起動する（右画像）。&lt;/p&gt;
 
 &lt;p&gt;ターミナルはタブになっていて、右上の＋ボタンでタブを増やすことができる。

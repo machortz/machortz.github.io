@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title> Hugoを使ってみたときのメモ // machortz blog </title>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="summary" content="こちらのエントリを拝見し、Hugoをつかってみたときのメモ。 http://deeeet.com/writing/2014/12/25/hugo/ Hugoとは Goで書かれた静的サイトジェネレータ。 当然github pagesでもbitbucketでのデプロイも可能。 バイナリでも配布されているので、使うだけなら特にGo言語がどうとか気にしなくて良い。 使い方とか 公式サイトが簡潔にまとまっていて1時間もあればサイトを構築できる。 以下にすべて書いてあるので丸投げ( ･∀･) http://gohugo.io/overview/introduction 個人的なメモ ソースはbitbucketで管理し、github pagesで公開する サイト生成 $ hugo new site /path/to/site 新しいエントリ生成 $ hugo new posts/first.md ローカルで確認 $ hugo server --theme=redlounge --buildDrafts localhost:1313で確認。 bitbucketにソースをプッシュ 生成されたpublic/を一旦削除。 $ rm -rf public/ bitbucketのリポジトリ登録とプッシュ。 $ git init $ git remote add origin https://machortz@bitbucket.org/machortz/&lt;予め用意しておいたリポジトリ&gt;.git $ git add -A $ git commit -m &quot;initial commit&quot; $ git push origin master github pagesで公開 github pages用のリポジトリに作ったpublic/をサブモジュールとしてカレントディレクトリに追加する。 $ git submodule add https://github.com/machortz/machortz.github.io.git public 改めてhugoでサイトを生成する。このときにサブモジュールpublicのなかにindex.htmlとかが生成される。 draft = trueを削除することも忘れずに。。 $ hugo -t redlounge 生成されたサイト（publicディレクトリの中身）をgithubにプッシュしてサイトを公開する。 $ cd public/ $ git add -A $ git commit -m &quot;something&quot; $ git push origin master これで数分まてばgithub pagesで確認できる。 サブモジュール追加したあとのサイト生成から、github pagesへのプッシュまでのシェルスクリプトは、 http://gohugo.io/tutorials/github_pages_blog/ にある。 #!/bin/bash echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot; # Build the project.">
+
+
+  <meta property="og:title" content="Hugoを使ってみたときのメモ" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://machortz.github.io/posts/usinghugo/" />
+
+
+  
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://machortz.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="machortz blog" />
+
+  
+  <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/tomorrow-night-bright.min.css">
+  <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+    <h1 class="brand-title">machortz blog</h1>
+    <h2 class="brand-tagline">Androidとか</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://machortz.github.io">Home</a></li>
+        
+      </ul>
+    </nav>
+
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+		    <div id="toc" class="pure-u-1 pure-u-md-1-4">
+				<small class="toc-label">Contents</small>
+		   	 	<nav id="TableOfContents">
+<ul>
+<li><a href="#toc_0">Hugoとは</a></li>
+<li><a href="#toc_1">使い方とか</a></li>
+<li><a href="#toc_2">個人的なメモ</a>
+<ul>
+<li><a href="#toc_3">サイト生成</a></li>
+<li><a href="#toc_4">新しいエントリ生成</a></li>
+<li><a href="#toc_5">ローカルで確認</a></li>
+<li><a href="#toc_6">bitbucketにソースをプッシュ</a></li>
+<li><a href="#toc_7">github pagesで公開</a></li>
+</ul></li>
+</ul>
+</nav>
+		    </div>
+		    
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/posts/usinghugo/">Hugoを使ってみたときのメモ</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>29</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Dec</span> <span class="post-date-year">2014</span>
+            	</span>
+            	
+            
+            	
+            
+
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-hugo" href="/categories/hugo">hugo</a> 
+				
+				</div>
+			
+
+			
+
+			
+
+            
+
+<p>こちらのエントリを拝見し、Hugoをつかってみたときのメモ。</p>
+
+<p><a href="http://deeeet.com/writing/2014/12/25/hugo/">http://deeeet.com/writing/2014/12/25/hugo/</a></p>
+
+<h1 id="toc_0">Hugoとは</h1>
+
+<p>Goで書かれた静的サイトジェネレータ。</p>
+
+<p>当然github pagesでもbitbucketでのデプロイも可能。</p>
+
+<p>バイナリでも配布されているので、使うだけなら特にGo言語がどうとか気にしなくて良い。</p>
+
+<h1 id="toc_1">使い方とか</h1>
+
+<p>公式サイトが簡潔にまとまっていて1時間もあればサイトを構築できる。</p>
+
+<p>以下にすべて書いてあるので丸投げ( ･∀･)</p>
+
+<p><a href="http://gohugo.io/overview/introduction">http://gohugo.io/overview/introduction</a></p>
+
+<h1 id="toc_2">個人的なメモ</h1>
+
+<p>ソースはbitbucketで管理し、github pagesで公開する</p>
+
+<h2 id="toc_3">サイト生成</h2>
+
+<pre><code>$ hugo new site /path/to/site
+</code></pre>
+
+<h2 id="toc_4">新しいエントリ生成</h2>
+
+<pre><code>$ hugo new posts/first.md
+</code></pre>
+
+<h2 id="toc_5">ローカルで確認</h2>
+
+<pre><code>$ hugo server --theme=redlounge --buildDrafts
+</code></pre>
+
+<p>localhost:1313で確認。</p>
+
+<h2 id="toc_6">bitbucketにソースをプッシュ</h2>
+
+<p>生成されたpublic/を一旦削除。</p>
+
+<pre><code>$ rm -rf public/
+</code></pre>
+
+<p>bitbucketのリポジトリ登録とプッシュ。</p>
+
+<pre><code>$ git init
+$ git remote add origin https://machortz@bitbucket.org/machortz/&lt;予め用意しておいたリポジトリ&gt;.git
+$ git add -A
+$ git commit -m &quot;initial commit&quot;
+$ git push origin master
+</code></pre>
+
+<h2 id="toc_7">github pagesで公開</h2>
+
+<p>github pages用のリポジトリに作ったpublic/をサブモジュールとしてカレントディレクトリに追加する。</p>
+
+<pre><code>$ git submodule add https://github.com/machortz/machortz.github.io.git public
+</code></pre>
+
+<p>改めてhugoでサイトを生成する。このときにサブモジュールpublicのなかにindex.htmlとかが生成される。
+draft = trueを削除することも忘れずに。。</p>
+
+<pre><code>$ hugo -t redlounge
+</code></pre>
+
+<p>生成されたサイト（publicディレクトリの中身）をgithubにプッシュしてサイトを公開する。</p>
+
+<pre><code>$ cd public/
+$ git add -A
+$ git commit -m &quot;something&quot;
+$ git push origin master
+</code></pre>
+
+<p>これで数分まてばgithub pagesで確認できる。</p>
+
+<p>サブモジュール追加したあとのサイト生成から、github pagesへのプッシュまでのシェルスクリプトは、
+<a href="http://gohugo.io/tutorials/github_pages_blog/">http://gohugo.io/tutorials/github_pages_blog/</a> にある。</p>
+
+<pre><code>#!/bin/bash
+
+echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
+
+# Build the project. 
+hugo # if using a theme, replace by `hugo -t &lt;yourtheme&gt;`
+
+# Go To Public folder
+cd public
+# Add changes to git.
+git add -A
+
+# Commit changes.
+msg=&quot;rebuilding site `date`&quot;
+if [ $# -eq 1 ]
+  then msg=&quot;$1&quot;
+  fi
+  git commit -m &quot;$msg&quot;
+
+  # Push source and build repos.
+  git push origin master
+
+  # Come Back
+  cd ..
+</code></pre>
+
+	
+			
+
+			
+				<div class="tags-list">
+					<span class="dark-red">Tags</span><span class="decorative-marker">//</span>
+					
+	                <a class="post-tag post-tag-hugo" href="/tags/hugo">hugo</a>, 
+	                
+				</div>
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/posts/installopengrok/">Ubuntu Server 14.04 にOpenGrokをインストールする</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2014. All rights reserved. </p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>

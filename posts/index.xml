@@ -246,10 +246,8 @@ Total time: 2 seconds
 
 &lt;p&gt;で、今朝masterブランチをビルドしてnexus5に焼いたときのスクショがこちら。&lt;/p&gt;
 
-&lt;p&gt;{% img /images/2014-12-08/devsettings.png 200 %} {% img /images/2014-12-08/Terminal.png 200 %}&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;../img/20141208/devsettings.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../img/20141208/terminal.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./img/20141208/devsettings.png&#34; width=&#34;200&#34; hspace=&#34;20&#34;&gt;
+&lt;img src=&#34;./img/20141208/terminal.png&#34;width &#34;200&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;開発者オプションの&lt;code&gt;Local Terminal&lt;/code&gt;（左画像）にチェックを入れるとランチャーにアイコンが表示されるのでおもむろにタップすると、CyanogenModのTerminalのようなTerminalが起動する（右画像）。&lt;/p&gt;
 

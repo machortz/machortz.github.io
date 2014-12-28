@@ -11,7 +11,7 @@
 <meta name="description" content="aospにコミットされていたTerminalアプリの紹介">
 <meta name="keywords" content="">
 <meta name="author" content="machortz">
-<meta name="summary" content="以前AOSPのSettingsの開発者オプションのソースを読んでいて気になっていたAOSPのTerminalアプリの存在が露になった（ぼくが知らなかっただけかも）。 今朝、masterのコミットを眺めていたら偶然みつけた。これとこれ。 開発者オプションのソースは、 https://github.com/android/platform_packages_apps_settings/blob/master/src/com/android/settings/DevelopmentSettings.java 280行目あたりで &ldquo;com.android.terminal&rdquo;がインストールされていなかったら、プリファレンスから設定項目（この場合はチェックボックス）をremoveしている。 if (!isPackageInstalled(getActivity(), TERMINAL_APP_PACKAGE)) { debugDebuggingCategory.removePreference(mEnableTerminal); mEnableTerminal = null; } また、&rdquo;com.android.terminal&rdquo;がインストールされていてチェックされるとPackageManager#setApplicationEnabledSetting()で&rdquo;com.android.terminal&rdquo;が有効化されてランチャーに表示されるようになる。その処理が1350行目くらい。 } else if (preference == mEnableTerminal) { final PackageManager pm = getActivity().getPackageManager(); pm.setApplicationEnabledSetting(TERMINAL_APP_PACKAGE, mEnableTerminal.isChecked() ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, 0); で、今朝masterブランチをビルドしてnexus5に焼いたときのスクショがこちら。 {% img /images/2014-12-08/devsettings.png 200 %} {% img /images/2014-12-08/Terminal.png 200 %} 開発者オプションのLocal Terminal（左画像）にチェックを入れるとランチャーにアイコンが表示されるのでおもむろにタップすると、CyanogenModのTerminalのようなTerminalが起動する（右画像）。 ターミナルはタブになっていて、右上の＋ボタンでタブを増やすことができる。 タブの移動はスワイプ。 起動直後はなぜか文字入力ができないという致命的なバグを孕んでいるようだが、 縦横コンフィグ変えたりキーボード乱打しまくってたらいつのまにか入力可能な状態に。この間、２回くらいANRで落ちたけど。 まだ不安定のようですね。 terminalアプリのソースはこれから眺めてみます。 以上です。">
+<meta name="summary" content="以前AOSPのSettingsの開発者オプションのソースを読んでいて気になっていたAOSPのTerminalアプリの存在が露になった（ぼくが知らなかっただけかも）。 今朝、masterのコミットを眺めていたら偶然みつけた。これとこれ。 開発者オプションのソースは、 https://github.com/android/platform_packages_apps_settings/blob/master/src/com/android/settings/DevelopmentSettings.java 280行目あたりで &ldquo;com.android.terminal&rdquo;がインストールされていなかったら、プリファレンスから設定項目（この場合はチェックボックス）をremoveしている。 if (!isPackageInstalled(getActivity(), TERMINAL_APP_PACKAGE)) { debugDebuggingCategory.removePreference(mEnableTerminal); mEnableTerminal = null; } また、&rdquo;com.android.terminal&rdquo;がインストールされていてチェックされるとPackageManager#setApplicationEnabledSetting()で&rdquo;com.android.terminal&rdquo;が有効化されてランチャーに表示されるようになる。その処理が1350行目くらい。 } else if (preference == mEnableTerminal) { final PackageManager pm = getActivity().getPackageManager(); pm.setApplicationEnabledSetting(TERMINAL_APP_PACKAGE, mEnableTerminal.isChecked() ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, 0); で、今朝masterブランチをビルドしてnexus5に焼いたときのスクショがこちら。 開発者オプションのLocal Terminal（左画像）にチェックを入れるとランチャーにアイコンが表示されるのでおもむろにタップすると、CyanogenModのTerminalのようなTerminalが起動する（右画像）。 ターミナルはタブになっていて、右上の＋ボタンでタブを増やすことができる。 タブの移動はスワイプ。 起動直後はなぜか文字入力ができないという致命的なバグを孕んでいるようだが、 縦横コンフィグ変えたりキーボード乱打しまくってたらいつのまにか入力可能な状態に。この間、２回くらいANRで落ちたけど。 まだ不安定のようですね。 terminalアプリのソースはこれから眺めてみます。 以上です。">
 
 
   <meta property="og:title" content="AOSP謹製のTerminalアプリ" />
@@ -147,10 +147,8 @@
 
 <p>で、今朝masterブランチをビルドしてnexus5に焼いたときのスクショがこちら。</p>
 
-<p>{% img /images/2014-12-08/devsettings.png 200 %} {% img /images/2014-12-08/Terminal.png 200 %}</p>
-
-<p><img src="../img/20141208/devsettings.png"></p>
-<p><img src="../img/20141208/terminal.png"></p>
+<p><img src="./img/20141208/devsettings.png" width="200" hspace="20">
+<img src="./img/20141208/terminal.png"width "200"></p>
 
 <p>開発者オプションの<code>Local Terminal</code>（左画像）にチェックを入れるとランチャーにアイコンが表示されるのでおもむろにタップすると、CyanogenModのTerminalのようなTerminalが起動する（右画像）。</p>
 

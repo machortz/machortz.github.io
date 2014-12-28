@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Aosp on machortz blog </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://machortz.github.io/tags/aosp/index.xml/</link>
+    <language>ja-JP</language>
+    <author>machortz</author>
+    
+    <updated>Mon, 08 Dec 2014 10:01:06 JST</updated>
+    
+    <item>
+      <title>AOSP謹製のTerminalアプリ</title>
+      <link>http://machortz.github.io/posts/aosp-terminal/</link>
+      <pubDate>Mon, 08 Dec 2014 10:01:06 JST</pubDate>
+      <author>machortz</author>
+      <guid>http://machortz.github.io/posts/aosp-terminal/</guid>
+      <description>&lt;p&gt;以前AOSPのSettingsの開発者オプションのソースを読んでいて気になっていたAOSPのTerminalアプリの存在が露になった（ぼくが知らなかっただけかも）。&lt;/p&gt;
+
+&lt;p&gt;今朝、masterのコミットを眺めていたら偶然みつけた。&lt;a href=&#34;https://android.googlesource.com/platform/manifest/+/5fa71037d3ce5e855b90ae98641b5cacc92de9bd&#34;&gt;これ&lt;/a&gt;と&lt;a href=&#34;https://android.googlesource.com/platform/manifest/+/9f8988cc25919fb6003b46266e4ac9697d3c0d30&#34;&gt;これ&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;開発者オプションのソースは、
+&lt;a href=&#34;https://github.com/android/platform_packages_apps_settings/blob/master/src/com/android/settings/DevelopmentSettings.java&#34;&gt;https://github.com/android/platform_packages_apps_settings/blob/master/src/com/android/settings/DevelopmentSettings.java&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;280行目あたりで &amp;ldquo;com.android.terminal&amp;rdquo;がインストールされていなかったら、プリファレンスから設定項目（この場合はチェックボックス）をremoveしている。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    if (!isPackageInstalled(getActivity(), TERMINAL_APP_PACKAGE)) {
+        debugDebuggingCategory.removePreference(mEnableTerminal);
+        mEnableTerminal = null;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;また、&amp;rdquo;com.android.terminal&amp;rdquo;がインストールされていてチェックされるとPackageManager#setApplicationEnabledSetting()で&amp;rdquo;com.android.terminal&amp;rdquo;が有効化されてランチャーに表示されるようになる。その処理が1350行目くらい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  } else if (preference == mEnableTerminal) {
+    final PackageManager pm = getActivity().getPackageManager();
+    pm.setApplicationEnabledSetting(TERMINAL_APP_PACKAGE,
+      mEnableTerminal.isChecked() ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+        : PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, 0);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;で、今朝masterブランチをビルドしてnexus5に焼いたときのスクショがこちら。&lt;/p&gt;
+
+&lt;p&gt;{% img /images/2014-12-08/devsettings.png 200 %} {% img /images/2014-12-08/Terminal.png 200 %}&lt;/p&gt;
+
+&lt;p&gt;開発者オプションの&lt;code&gt;Local Terminal&lt;/code&gt;（左画像）にチェックを入れるとランチャーにアイコンが表示されるのでおもむろにタップすると、CyanogenModのTerminalのようなTerminalが起動する（右画像）。&lt;/p&gt;
+
+&lt;p&gt;ターミナルはタブになっていて、右上の＋ボタンでタブを増やすことができる。
+タブの移動はスワイプ。
+起動直後はなぜか文字入力ができないという致命的なバグを孕んでいるようだが、
+縦横コンフィグ変えたりキーボード乱打しまくってたらいつのまにか入力可能な状態に。この間、２回くらいANRで落ちたけど。
+まだ不安定のようですね。
+terminalアプリのソースはこれから眺めてみます。&lt;/p&gt;
+
+&lt;p&gt;以上です。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Android5.0でのsdk toolsのビルド方法</title>
+      <link>http://machortz.github.io/posts/aosp-sdk-tools-build-instruction/</link>
+      <pubDate>Tue, 25 Nov 2014 23:59:38 JST</pubDate>
+      <author>machortz</author>
+      <guid>http://machortz.github.io/posts/aosp-sdk-tools-build-instruction/</guid>
+      <description>
+
+&lt;p&gt;Android 5.0からsdkのビルド方法が少し変わっているようだ。&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Kitkat まで&lt;/h1&gt;
+
+&lt;p&gt;kitkatまでは&lt;code&gt;-g all&lt;/code&gt; で &lt;code&gt;repo sync&lt;/code&gt;したソースツリーで以下のコマンドSDKがすべてビルドできていた。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ lunch sdk-eng &amp;amp;&amp;amp; make sdk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで、/out/host/linux-x86/sdk/android-sdk_eng.hoge_linux-x86/にsdkが出来上がる。&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Lollipop ではsdk toolsがplatformビルドから除外&lt;/h1&gt;
+
+&lt;p&gt;しかし5.0以降、なぜかsdk/toolsがビルドされなくなっているようだ。
+以下のコミットからも明らかなように、意図的にremoveされているようだ。
+&lt;a href=&#34;http://aosp.changelog.to/aosp-KITKAT-LRX21M.html&#34;&gt;kitkatとlollipopのchangelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(KKからLへの差分で、&amp;rdquo;Remove sdk tools from the build&amp;rdquo; というコミットがいくつかマージされている)&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;sdk/toolsのビルド方法&lt;/h1&gt;
+
+&lt;p&gt;Lollipopのsdk/toolsは、他のsdkとは別にビルドする必要があるとのこと。&lt;a href=&#34;http://tools.android.com/build&#34;&gt;参考&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;buildSrc/がポイント。ここにsdk/toolsをビルドするスクリプトが入っている。
+buildSrc/はstudio系のブランチを落としてこないと入ってない。
+ふつうにmasterとかandroid-5.0.0_rXとか指定して&lt;code&gt;repo sync&lt;/code&gt;してもbuildSrc/は含まれない。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ repo init -u https://android.googlesource.com/platform/manifest -b studio-1.1-dev
+$ repo sync
+$ mkdir -p out/dist
+$ ./tools/buildSrc/servers/build_tools.sh `pwd`/out `pwd`/out/dist 1234
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記参考サイトに&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This will build the SDK Tools for your current platform. the result is located in out/sdk/
+This is composed of&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The emulator and associated executables and libraries&lt;/li&gt;
+&lt;li&gt;Java-based standalone tools&lt;/li&gt;
+&lt;li&gt;Monitor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;とあるように、emulatorやuiautomatorなどのsdk/tools一式がout/sdk/にビルドされる。&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;toolsのビルドにはJava7ではなくJava6&lt;/h1&gt;
+
+&lt;p&gt;以上を実施してみればわかるが、build_tools.sh 実行時にJava6を使えと怒られる。
+Lollipop以降のPlatformビルドはJava7である必要があるが、toolsのビルドに関しては未だJava6でないといけないようだ。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

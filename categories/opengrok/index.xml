@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Opengrok on machortz blog </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://machortz.github.io/categories/opengrok/index.xml/</link>
+    <language>ja-JP</language>
+    <author>machortz</author>
+    
+    <updated>Thu, 25 Dec 2014 02:01:07 JST</updated>
+    
+    <item>
+      <title>Ubuntu Server 14.04 にOpenGrokをインストールする</title>
+      <link>http://machortz.github.io/posts/installopengrok/</link>
+      <pubDate>Thu, 25 Dec 2014 02:01:07 JST</pubDate>
+      <author>machortz</author>
+      <guid>http://machortz.github.io/posts/installopengrok/</guid>
+      <description>
+
+&lt;p&gt;OpenGrok便利ですよね。
+ブラウザさえあれば、いつでもどこでもタグジャンプできます。&lt;/p&gt;
+
+&lt;p&gt;私の場合は通勤電車でよくタグジャンプしています。&lt;/p&gt;
+
+&lt;p&gt;OpenGrokのインストールは非常に簡単で、githubのREADME通りにやれば滞りなくできます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/OpenGrok/OpenGrok&#34;&gt;https://github.com/OpenGrok/OpenGrok&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;それでは、上記のREADMEを参考に順を追って見ていきましょう。&lt;/p&gt;
+
+&lt;p&gt;OpenGrok本体は、バイナリを落としてくるのも良いですが、今回はせっかくなのでソースからビルドを行いました。&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;環境&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ubuntu Server 14.04.1 64bit&lt;/li&gt;
+&lt;li&gt;RAM2GB&lt;/li&gt;
+&lt;li&gt;OpenJDK1.7&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;必要なもの&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Java1.7以上&lt;/li&gt;
+&lt;li&gt;Tomcat7以上&lt;/li&gt;
+&lt;li&gt;Exuberant Ctags&lt;/li&gt;
+&lt;li&gt;JFlex&lt;/li&gt;
+&lt;li&gt;Ant1.9.3以上&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;インストールします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install openjdk-7-jdk ant exuberant-ctags tomcat7 tomcat7-admin jflex
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;OpenGrokのソースコードの取得&lt;/h1&gt;
+
+&lt;p&gt;本エントリでは~にogというディレクトリを作成し、その直下にソースを落としてきます。&lt;/p&gt;
+
+&lt;p&gt;最新のstableでもよいと思いますが、今回はmasterソースをとってきました。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir ~/og &amp;amp;&amp;amp; cd ~/og
+$ git clone git@github.com:OpenGrok/OpenGrok.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;OpenGrokのビルド&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ant
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ビルドが成功すると、以下のメッセージとともにdistの下にopengrok.jarとsource.warができているはずです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;BUILD SUCCESSFUL
+Total time: 2 seconds
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;OpenGrokのデプロイ&lt;/h1&gt;
+
+&lt;p&gt;~/og/OpenGrok/配下にあるOpenGrokというスクリプトを実行します。
+別エントリで触れる予定ですが、このスクリプトによってOpenGrokのコンフィグファイルが生成されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./OpenGrok deploy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_5&#34;&gt;Tomcatを再起動&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo service tomcat7 restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_6&#34;&gt;動作確認&lt;/h1&gt;
+
+&lt;p&gt;ブラウザで &lt;a href=&#34;http://localhost:8080/&#34;&gt;http://localhost:8080/&lt;/a&gt; にアクセスし、空のOpenGrokの画面を確認できればここまではOKです。&lt;/p&gt;
+
+&lt;p&gt;OpenGrokの設定とソースのインデクシングは次回にまわします。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

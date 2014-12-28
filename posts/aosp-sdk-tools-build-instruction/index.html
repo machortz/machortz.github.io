@@ -10,7 +10,7 @@
 
 <meta name="description" content="">
 <meta name="keywords" content="">
-<meta name="author" content="">
+<meta name="author" content="machortz">
 <meta name="summary" content="Android 5.0からsdkのビルド方法が少し変わっているようだ。 Kitkat まで kitkatまでは-g all で repo syncしたソースツリーで以下のコマンドSDKがすべてビルドできていた。 $ lunch sdk-eng &amp;&amp; make sdk これで、/out/host/linux-x86/sdk/android-sdk_eng.hoge_linux-x86/にsdkが出来上がる。 Lollipop ではsdk toolsがplatformビルドから除外 しかし5.0以降、なぜかsdk/toolsがビルドされなくなっているようだ。 以下のコミットからも明らかなように、意図的にremoveされているようだ。 kitkatとlollipopのchangelog (KKからLへの差分で、&rdquo;Remove sdk tools from the build&rdquo; というコミットがいくつかマージされている) sdk/toolsのビルド方法 Lollipopのsdk/toolsは、他のsdkとは別にビルドする必要があるとのこと。参考 buildSrc/がポイント。ここにsdk/toolsをビルドするスクリプトが入っている。 buildSrc/はstudio系のブランチを落としてこないと入ってない。 ふつうにmasterとかandroid-5.0.0_rXとか指定してrepo syncしてもbuildSrc/は含まれない。 $ repo init -u https://android.googlesource.com/platform/manifest -b studio-1.1-dev $ repo sync $ mkdir -p out/dist $ ./tools/buildSrc/servers/build_tools.sh `pwd`/out `pwd`/out/dist 1234 上記参考サイトに This will build the SDK Tools for your current platform. the result is located in">
 
 
@@ -112,6 +112,12 @@
             	</span>
             	
             
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">machortz</a></span>
+            		
+
+
+
             	
             
 

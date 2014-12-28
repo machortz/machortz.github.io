@@ -10,7 +10,7 @@
 
 <meta name="description" content="">
 <meta name="keywords" content="">
-<meta name="author" content="">
+<meta name="author" content="machortz">
 <meta name="summary" content="Android用のChromiumをビルドしたくなったのでしてみました。 基本的に本家に書かれていることをやるだけです。 http://code.google.com/p/chromium/wiki/AndroidBuildInstructions 環境 ubuntu 12.04.3 64bit Desktop 国内ミラーだと例えば理研などがあります。 http://ftp.riken.jp/Linux/ubuntu-iso/CDs/precise/ Java6のインストール あらかじめOracle Java6をインストールしておく。 こちらのサイトを参考にさせて頂きました。 http://qiita.com/ka_/items/dbeca6fac63a6e8ec9a6 以下のごとくppaを追加してインストールしてください。 $ sudo add-apt-repository ppa:webupd8team/java $ sudo apt-get update $ sudo apt-get install oracle-java6-installer depot_toolsのインストール chromiumのソースコード取得やビルドに必要なツール群です。 今回直接関係しているのはソース取得のgclient、コンフィグのgyp、ビルドシステムのninjaだけ（たぶん）ですが他にもいろいろあるようです。 http://dev.chromium.org/developers/how-tos/depottools 今回は~/にchromiumというディレクトリを作成し、depot_toolsやchromiumのソースはその中におとすことにします。 $ mkdir ~/chromium &amp;&amp; cd ~/chromium $ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git $ export PATH=&quot;$PATH&quot;:`pwd`/depot_tools ソースコードとビルドに必要なモジュールの取得 https://sites.google.com/a/chromium.org/dev/developers/how-tos/get-the-code $ fetch --nohooks android --nosvn=True # コミッタでない場合は --nosvn=True $ cd src $ ./build/install-build-deps.sh $ gclient sync --nohooks Android用のビルドに必要なその他のツールをインストールするスクリプトです。 ubuntuのバージョンによって必要なライブラリなどをインストールするものですが、ここで引っかかる場合は少々美しくないですが、スクリプトの中身を見て手動で apt-get install を実行してみてください。 $ sudo ./build/install-build-deps-android.sh ビルド これでビルドの準備ができましたので、ビルドします。 ビルドにはninjaというビルドシステムを使用します。 ninjaとはgoogleが開発したビルドシry。要するにmakeのすごい版ですかね（汗 http://code.google.com/p/chromium/wiki/NinjaBuild $ export GYP_GENERATORS=ninja $ .">
 
 
@@ -116,6 +116,12 @@
             	</span>
             	
             
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">machortz</a></span>
+            		
+
+
+
             	
             
 

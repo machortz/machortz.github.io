@@ -10,7 +10,7 @@
 
 <meta name="description" content="">
 <meta name="keywords" content="">
-<meta name="author" content="">
+<meta name="author" content="machortz">
 <meta name="summary" content="こちらのエントリを拝見し、Hugoをつかってみたときのメモ。 http://deeeet.com/writing/2014/12/25/hugo/ Hugoとは Goで書かれた静的サイトジェネレータ。 当然github pagesでもbitbucketでのデプロイも可能。 バイナリでも配布されているので、使うだけなら特にGo言語がどうとか気にしなくて良い。 使い方とか 公式サイトが簡潔にまとまっていて1時間もあればサイトを構築できる。 以下にすべて書いてあるので丸投げ( ･∀･) http://gohugo.io/overview/introduction 個人的なメモ ソースはbitbucketで管理し、github pagesで公開する サイト生成 $ hugo new site /path/to/site 新しいエントリ生成 $ hugo new posts/first.md ローカルで確認 $ hugo server --theme=redlounge --buildDrafts localhost:1313で確認。 bitbucketにソースをプッシュ 生成されたpublic/を一旦削除。 $ rm -rf public/ bitbucketのリポジトリ登録とプッシュ。 $ git init $ git remote add origin https://machortz@bitbucket.org/machortz/&lt;予め用意しておいたリポジトリ&gt;.git $ git add -A $ git commit -m &quot;initial commit&quot; $ git push origin master github pagesで公開 github pages用のリポジトリに作ったpublic/をサブモジュールとしてカレントディレクトリに追加する。 $ git submodule add https://github.com/machortz/machortz.github.io.git public 改めてhugoでサイトを生成する。このときにサブモジュールpublicのなかにindex.htmlとかが生成される。 draft = trueを削除することも忘れずに。。 $ hugo -t redlounge 生成されたサイト（publicディレクトリの中身）をgithubにプッシュしてサイトを公開する。 $ cd public/ $ git add -A $ git commit -m &quot;something&quot; $ git push origin master これで数分まてばgithub pagesで確認できる。 サブモジュール追加したあとのサイト生成から、github pagesへのプッシュまでのシェルスクリプトは、 http://gohugo.io/tutorials/github_pages_blog/ にある。 #!/bin/bash echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot; # Build the project.">
 
 
@@ -118,6 +118,12 @@
             	</span>
             	
             
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">machortz</a></span>
+            		
+
+
+
             	
             
 

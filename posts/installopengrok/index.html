@@ -10,7 +10,7 @@
 
 <meta name="description" content="">
 <meta name="keywords" content="">
-<meta name="author" content="">
+<meta name="author" content="machortz">
 <meta name="summary" content="OpenGrok便利ですよね。 ブラウザさえあれば、いつでもどこでもタグジャンプできます。 私の場合は通勤電車でよくタグジャンプしています。 OpenGrokのインストールは非常に簡単で、githubのREADME通りにやれば滞りなくできます。 https://github.com/OpenGrok/OpenGrok それでは、上記のREADMEを参考に順を追って見ていきましょう。 OpenGrok本体は、バイナリを落としてくるのも良いですが、今回はせっかくなのでソースからビルドを行いました。 環境 Ubuntu Server 14.04.1 64bit RAM2GB OpenJDK1.7 必要なもの Java1.7以上 Tomcat7以上 Exuberant Ctags JFlex Ant1.9.3以上 インストールします。 $ sudo apt-get install openjdk-7-jdk ant exuberant-ctags tomcat7 tomcat7-admin jflex OpenGrokのソースコードの取得 本エントリでは~にogというディレクトリを作成し、その直下にソースを落としてきます。 最新のstableでもよいと思いますが、今回はmasterソースをとってきました。 $ mkdir ~/og &amp;&amp; cd ~/og $ git clone git@github.com:OpenGrok/OpenGrok.git OpenGrokのビルド $ ant ビルドが成功すると、以下のメッセージとともにdistの下にopengrok.jarとsource.warができているはずです。 BUILD SUCCESSFUL Total time: 2 seconds OpenGrokのデプロイ ~/og/OpenGrok/配下にあるOpenGrokというスクリプトを実行します。 別エントリで触れる予定ですが、このスクリプトによってOpenGrokのコンフィグファイルが生成されます。 $ ./OpenGrok deploy Tomcatを再起動 $ sudo service tomcat7 restart 動作確認 ブラウザで http://localhost:8080/">
 
 
@@ -115,6 +115,12 @@
             	</span>
             	
             
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">machortz</a></span>
+            		
+
+
+
             	
             
 

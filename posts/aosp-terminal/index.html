@@ -18,7 +18,7 @@
 <meta property="og:description" content="aospにコミットされていたTerminalアプリの紹介" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content="http://machortz.github.io/posts/aosp-terminal/" />
+<meta property="og:url" content="http://localhost:1313/posts/aosp-terminal/" />
 
 
   
@@ -30,7 +30,7 @@
   
   
 
-  <link rel="stylesheet" href="http://machortz.github.io/css/redlounge.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/redlounge.css">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
@@ -67,7 +67,7 @@
 
     <nav class="nav">
       <ul class="nav-list">
-        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://machortz.github.io">Home</a></li>
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://localhost:1313">Home</a></li>
         
       </ul>
     </nav>
@@ -206,7 +206,7 @@ terminalアプリのソースはこれから眺めてみます。</p>
 		</ul>
 	</div>
 
-	<p>&copy; 2014. All rights reserved. </p>
+	<p>&copy; 2015. All rights reserved. </p>
 </div>
     </div>
   </div>
@@ -215,5 +215,8 @@ terminalアプリのソースはこれから眺めてみます。</p>
 	
 
   
-</body>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>

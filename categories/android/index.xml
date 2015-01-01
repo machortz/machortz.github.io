@@ -3,146 +3,18 @@
   <channel>
       <title>Android on machortz blog </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/categories/android/index.xml/</link>
+    <link>http://machortz.github.io/categories/android/index.xml/</link>
     <language>ja-JP</language>
     <author>machortz</author>
     
-    <updated>Thu, 01 Jan 2015 04:09:53 JST</updated>
-    
-    <item>
-      <title>Growth of the AOSP</title>
-      <link>http://localhost:1313/posts/growthofaosp/</link>
-      <pubDate>Thu, 01 Jan 2015 04:09:53 JST</pubDate>
-      <author>machortz</author>
-      <guid>http://localhost:1313/posts/growthofaosp/</guid>
-      <description>
-
-&lt;p&gt;謹賀新年。&lt;/p&gt;
-
-&lt;p&gt;以前からやろうやろうと思ってて放置してたネタです。&lt;/p&gt;
-
-&lt;p&gt;Androidが公開されて6年以上経ちます。&lt;/p&gt;
-
-&lt;p&gt;その間に何百万ものコミットがなされ、今や一大オープンソースプロジェクトとなりました。&lt;/p&gt;
-
-&lt;p&gt;以前よりコードのライン数やコミットの変遷などが気になってましたのでざっと調べてみました。&lt;/p&gt;
-
-&lt;p&gt;ほんとは昨年(2014年)のAdventCalendarで書こうと思っていたのですが、ボケっとしてたら終わってた・・&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://qiita.com/advent-calendar/2014/android&#34;&gt;http://qiita.com/advent-calendar/2014/android&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;対象のブランチ&lt;/h1&gt;
-
-&lt;p&gt;AOSPのmasterブランチが対象です。&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;使った道具とか&lt;/h1&gt;
-
-&lt;p&gt;主にgitとawkとmatplotlibとgnuplotを使いました。&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_2&#34;&gt;ソースコードの行数の変遷&lt;/h1&gt;
-
-&lt;p&gt;いきなりですが、
-c, cpp, cc, h, s(S), javaのライン数の総和の変遷を描いたのが下図です。&lt;/p&gt;
-
-&lt;p&gt;aidlとかxmlとかは無視してます。&lt;/p&gt;
-
-&lt;p&gt;グラフ中の赤線は、上記の拡張子の全ファイルのライン数総和を意味します。
-同様に、緑線がJava以外(Native)、青がJavaのライン数の総和を示します。&lt;/p&gt;
-
-&lt;!-- ![GrowthOfLoC](http://machortz.github.io/img/20150101/growth-of-loc.png) --&gt;
-
-&lt;p&gt;&lt;a href=&#34;../../img/20150101/growth-of-loc.png&#34; rel=&#34;lightbox&#34;&gt;
-    &lt;img src=&#34;../../img/20150101/growth-of-loc.png&#34; alt=&#34;&#34; width=&#34;500&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;ちょっと怪しいところもありますが、概形はまぁこんなもんでしょう。&lt;/p&gt;
-
-&lt;p&gt;ちなみに、externalは、&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;それだけで巨大なのでexternal以外が見えなくなる&lt;/li&gt;
-&lt;li&gt;基本的にはAOSPとは別のOSSという存在である&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;という理由のため今回は除外しました。&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_3&#34;&gt;コミット数の変遷&lt;/h1&gt;
-
-&lt;p&gt;次は2010年から2014年の月毎のコミット数の変遷です。&lt;/p&gt;
-
-&lt;!-- ![commits per month](http://machortz.github.io/img/20150101/commitspermonth.png) --&gt;
-
-&lt;p&gt;&lt;a href=&#34;../../img/20150101/commitspermonth.png&#34; rel=&#34;lightbox&#34;&gt;
-    &lt;img src=&#34;../../img/20150101/commitspermonth.png&#34; alt=&#34;&#34; width=&#34;500&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;お、なんかperiodicalですね。&lt;/p&gt;
-
-&lt;p&gt;ちなみに2010年以降のAdroidの大きな動きは以下の通りです:参考&lt;a href=&#34;http://ja.wikipedia.org/wiki/Android%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%B1%A5%E6%AD%B4#Android_2.2_
-Froyo&#34;&gt;wiki&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Froyo(2.2)リリース 2010年5月〜6月頃&lt;/li&gt;
-&lt;li&gt;GB(2.3)リリース 2010年12月頃&lt;/li&gt;
-&lt;li&gt;Honeycomb(3.x)リリース 2011年2, 5, 7月あたり（もはやなかったことになっている希ガス）&lt;/li&gt;
-&lt;li&gt;ICS(4.0)リリース 2011年10月〜2012年3月&lt;/li&gt;
-&lt;li&gt;JB(4.1)リリース 2012年7月, 10月&lt;/li&gt;
-&lt;li&gt;JB(4.2)リリース 2012年11月, 2013年3月&lt;/li&gt;
-&lt;li&gt;JB(4.3)リリース 2013年7月&lt;/li&gt;
-&lt;li&gt;KK(4.4)リリース 2013年10月, 12月、2014年6月&lt;/li&gt;
-&lt;li&gt;L(5.0)リリース 2014年11月&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;toc_4&#34;&gt;コミッタ（Author）の内訳&lt;/h1&gt;
-
-&lt;p&gt;次はコミッタの内訳です。
-どの企業や組織が多くコミットしているか気になりますよね。&lt;/p&gt;
-
-&lt;p&gt;コミットログのAuthorのメールアドレスからドメイン別に集計しました。&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_5&#34;&gt;全ドメインの内訳&lt;/h2&gt;
-
-&lt;p&gt;まずはすべてのドメインを対象に内訳を出したものが下の10個の円グラフです。
-10個あるのは、2010年から2014年を10等分したことによるものです。&lt;/p&gt;
-
-&lt;!-- ![author-pi-all](http://machortz.github.io/img/20150101/author-pi-all.png) --&gt;
-
-&lt;p&gt;&lt;a href=&#34;../../img/20150101/author-pi-all.png&#34; rel=&#34;lightbox&#34;&gt;
-    &lt;img src=&#34;../../img/20150101/author-pi-all.png&#34; alt=&#34;&#34; width=&#34;500&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;すぐにわかりますが、google.comとandroid.comが支配的ですね。当然ですね。&lt;/p&gt;
-
-&lt;p&gt;Othersの組成が気になります。
-AOSPのコミットログで稀によく目にするソニーさんはどれくらいなんでしょうか。&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_6&#34;&gt;google.comとandroid.com以外のドメインの内訳&lt;/h2&gt;
-
-&lt;p&gt;次に上の10個の円グラフそれぞれについて、Othersをさらに分解してみます。&lt;/p&gt;
-
-&lt;p&gt;下の10個の円グラフがOthersを分解したものです。
-円グラフの位置は上図（全ドメイン内訳）と対応しています。&lt;/p&gt;
-
-&lt;!-- ![author-pi-others](http://machortz.github.io/img/20150101/author-pi-others.png) --&gt;
-
-&lt;!-- ![author-pi-others](../../img/20150101/author-pi-others.png) --&gt;
-
-&lt;p&gt;&lt;a href=&#34;../../img/20150101/author-pi-others.png&#34; rel=&#34;lightbox&#34;&gt;
-    &lt;img src=&#34;../../img/20150101/author-pi-others.png&#34; alt=&#34;&#34; width=&#34;500&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;端末ベンダやチップベンダが貢献しているのがわかります。&lt;/p&gt;
-
-&lt;p&gt;ということで、かなりやっつけですが以上です。&lt;/p&gt;
-
-&lt;p&gt;今後はさらに詳細な調査や考察をしていきたいです（小並感&lt;/p&gt;
-
-&lt;p&gt;来年から本ry&lt;/p&gt;
-</description>
-    </item>
+    <updated>Mon, 08 Dec 2014 10:01:06 JST</updated>
     
     <item>
       <title>AOSP謹製のTerminalアプリ</title>
-      <link>http://localhost:1313/posts/aosp-terminal/</link>
+      <link>http://machortz.github.io/posts/aosp-terminal/</link>
       <pubDate>Mon, 08 Dec 2014 10:01:06 JST</pubDate>
       <author>machortz</author>
-      <guid>http://localhost:1313/posts/aosp-terminal/</guid>
+      <guid>http://machortz.github.io/posts/aosp-terminal/</guid>
       <description>&lt;p&gt;以前AOSPのSettingsの開発者オプションのソースを読んでいて気になっていたAOSPのTerminalアプリの存在が露になった（ぼくが知らなかっただけかも）。&lt;/p&gt;
 
 &lt;p&gt;今朝、masterのコミットを眺めていたら偶然みつけた。&lt;a href=&#34;https://android.googlesource.com/platform/manifest/+/5fa71037d3ce5e855b90ae98641b5cacc92de9bd&#34;&gt;これ&lt;/a&gt;と&lt;a href=&#34;https://android.googlesource.com/platform/manifest/+/9f8988cc25919fb6003b46266e4ac9697d3c0d30&#34;&gt;これ&lt;/a&gt;。&lt;/p&gt;
@@ -187,10 +59,10 @@ terminalアプリのソースはこれから眺めてみます。&lt;/p&gt;
     
     <item>
       <title>Android5.0でのsdk toolsのビルド方法</title>
-      <link>http://localhost:1313/posts/aosp-sdk-tools-build-instruction/</link>
+      <link>http://machortz.github.io/posts/aosp-sdk-tools-build-instruction/</link>
       <pubDate>Tue, 25 Nov 2014 23:59:38 JST</pubDate>
       <author>machortz</author>
-      <guid>http://localhost:1313/posts/aosp-sdk-tools-build-instruction/</guid>
+      <guid>http://machortz.github.io/posts/aosp-sdk-tools-build-instruction/</guid>
       <description>
 
 &lt;p&gt;Android 5.0からsdkのビルド方法が少し変わっているようだ。&lt;/p&gt;
@@ -250,10 +122,10 @@ Lollipop以降のPlatformビルドはJava7である必要があるが、toolsの
     
     <item>
       <title>Chromium for Android のビルド方法</title>
-      <link>http://localhost:1313/posts/howtobuildchromiumforandroid/</link>
+      <link>http://machortz.github.io/posts/howtobuildchromiumforandroid/</link>
       <pubDate>Fri, 07 Feb 2014 13:19:08 JST</pubDate>
       <author>machortz</author>
-      <guid>http://localhost:1313/posts/howtobuildchromiumforandroid/</guid>
+      <guid>http://machortz.github.io/posts/howtobuildchromiumforandroid/</guid>
       <description>
 
 &lt;p&gt;Android用のChromiumをビルドしたくなったのでしてみました。&lt;br /&gt;

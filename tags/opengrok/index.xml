@@ -3,7 +3,7 @@
   <channel>
       <title>Opengrok on machortz blog </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/tags/opengrok/index.xml/</link>
+    <link>http://machortz.github.io/tags/opengrok/index.xml/</link>
     <language>ja-JP</language>
     <author>machortz</author>
     
@@ -11,10 +11,10 @@
     
     <item>
       <title>Ubuntu Server 14.04 にOpenGrokをインストールする</title>
-      <link>http://localhost:1313/posts/installopengrok/</link>
+      <link>http://machortz.github.io/posts/installopengrok/</link>
       <pubDate>Thu, 25 Dec 2014 02:01:07 JST</pubDate>
       <author>machortz</author>
-      <guid>http://localhost:1313/posts/installopengrok/</guid>
+      <guid>http://machortz.github.io/posts/installopengrok/</guid>
       <description>
 
 &lt;p&gt;OpenGrok便利ですよね。

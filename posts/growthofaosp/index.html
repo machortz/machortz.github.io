@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title> Growth of the AOSP // machortz blog </title>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="machortz">
+<meta name="summary" content="謹賀新年。 以前からやろうやろうと思ってて放置してたネタです。 Androidが公開されて6年以上経ちます。 その間に何百万ものコミットがなされ、今や一大オープンソースプロジェクトとなりました。 以前よりコードのライン数やコミットの変遷などが気になってましたのでざっと調べてみました。 ほんとは昨年(2014年)のAdventCalendarで書こうと思っていたのですが、ボケっとしてたら終わってた・・ http://qiita.com/advent-calendar/2014/android 対象のブランチ AOSPのmasterブランチが対象です。 使った道具とか 主にgitとawkとmatplotlibとgnuplotを使いました。 ソースコードの行数の変遷 いきなりですが、 c, cpp, cc, h, s(S), javaのライン数の総和の変遷を描いたのが下図です。 aidlとかxmlとかは無視してます。 グラフ中の赤線は、上記の拡張子の全ファイルのライン数総和を意味します。 同様に、緑線がJava以外(Native)、青がJavaのライン数の総和を示します。 ちょっと怪しいところもありますが、概形はまぁこんなもんでしょう。 ちなみに、externalは、 それだけで巨大なのでexternal以外が見えなくなる 基本的にはAOSPとは別のOSSという存在である という理由のため今回は除外しました。 コミット数の変遷 次は2010年から2014年の月毎のコミット数の変遷です。 お、なんかperiodicalですね。 ちなみに2010年以降のAdroidの大きな動きは以下の通りです:参考wiki Froyo(2.2)リリース 2010年5月〜6月頃 GB(2.3)リリース 2010年12月頃 Honeycomb(3.x)リリース 2011年2, 5, 7月あたり（もはやなかったことになっている希ガス） ICS(4.0)リリース 2011年10月〜2012年3月 JB(4.1)リリース 2012年7月, 10月 JB(4.2)リリース 2012年11月, 2013年3月 JB(4.3)リリース 2013年7月 KK(4.4)リリース 2013年10月, 12月、2014年6月 L(5.0)リリース 2014年11月 コミッタ（Author）の内訳 次はコミッタの内訳です。 どの企業や組織が多くコミットしているか気になりますよね。 コミットログのAuthorのメールアドレスからドメイン別に集計しました。 全ドメインの内訳 まずはすべてのドメインを対象に内訳を出したものが下の10個の円グラフです。 10個あるのは、2010年から2014年を10等分したことによるものです。 すぐにわかりますが、google.comとandroid.comが支配的ですね。当然ですね。 Othersの組成が気になります。 AOSPのコミットログで稀によく目にするソニーさんはどれくらいなんでしょうか。 google.comとandroid.com以外のドメインの内訳 次に上の10個の円グラフそれぞれについて、Othersをさらに分解してみます。 下の10個の円グラフがOthersを分解したものです。 円グラフの位置は上図（全ドメイン内訳）と対応しています。 端末ベンダやチップベンダが貢献しているのがわかります。 ということで、かなりやっつけですが以上です。">
+
+
+  <meta property="og:title" content="Growth of the AOSP" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://machortz.github.io/posts/growthofaosp/" />
+
+
+  
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://machortz.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="machortz blog" />
+
+  
+  <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/tomorrow-night-bright.min.css">
+  <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+    <h1 class="brand-title">machortz blog</h1>
+    <h2 class="brand-tagline">Androidとか</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://machortz.github.io">Home</a></li>
+        
+      </ul>
+    </nav>
+
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+		    <div id="toc" class="pure-u-1 pure-u-md-1-4">
+				<small class="toc-label">Contents</small>
+		   	 	<nav id="TableOfContents">
+<ul>
+<li><a href="#toc_0">対象のブランチ</a></li>
+<li><a href="#toc_1">使った道具とか</a></li>
+<li><a href="#toc_2">ソースコードの行数の変遷</a></li>
+<li><a href="#toc_3">コミット数の変遷</a></li>
+<li><a href="#toc_4">コミッタ（Author）の内訳</a>
+<ul>
+<li><a href="#toc_5">全ドメインの内訳</a></li>
+<li><a href="#toc_6">google.comとandroid.com以外のドメインの内訳</a></li>
+</ul></li>
+</ul>
+</nav>
+		    </div>
+		    
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/posts/growthofaosp/">Growth of the AOSP</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>1</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Jan</span> <span class="post-date-year">2015</span>
+            	</span>
+            	
+            
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">machortz</a></span>
+            		
+
+
+
+            	
+            
+
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-android" href="/categories/android">android</a> 
+				
+				</div>
+			
+
+			
+
+			
+
+            
+
+<p>謹賀新年。</p>
+
+<p>以前からやろうやろうと思ってて放置してたネタです。</p>
+
+<p>Androidが公開されて6年以上経ちます。</p>
+
+<p>その間に何百万ものコミットがなされ、今や一大オープンソースプロジェクトとなりました。</p>
+
+<p>以前よりコードのライン数やコミットの変遷などが気になってましたのでざっと調べてみました。</p>
+
+<p>ほんとは昨年(2014年)のAdventCalendarで書こうと思っていたのですが、ボケっとしてたら終わってた・・</p>
+
+<p><a href="http://qiita.com/advent-calendar/2014/android">http://qiita.com/advent-calendar/2014/android</a></p>
+
+<h1 id="toc_0">対象のブランチ</h1>
+
+<p>AOSPのmasterブランチが対象です。</p>
+
+<h1 id="toc_1">使った道具とか</h1>
+
+<p>主にgitとawkとmatplotlibとgnuplotを使いました。</p>
+
+<h1 id="toc_2">ソースコードの行数の変遷</h1>
+
+<p>いきなりですが、
+c, cpp, cc, h, s(S), javaのライン数の総和の変遷を描いたのが下図です。</p>
+
+<p>aidlとかxmlとかは無視してます。</p>
+
+<p>グラフ中の赤線は、上記の拡張子の全ファイルのライン数総和を意味します。
+同様に、緑線がJava以外(Native)、青がJavaのライン数の総和を示します。</p>
+
+<!-- ![GrowthOfLoC](http://machortz.github.io/img/20150101/growth-of-loc.png) -->
+
+<p><a href="../../img/20150101/growth-of-loc.png" rel="lightbox">
+    <img src="../../img/20150101/growth-of-loc.png" alt="" width="500" /></a></p>
+
+<p>ちょっと怪しいところもありますが、概形はまぁこんなもんでしょう。</p>
+
+<p>ちなみに、externalは、</p>
+
+<ul>
+<li>それだけで巨大なのでexternal以外が見えなくなる</li>
+<li>基本的にはAOSPとは別のOSSという存在である</li>
+</ul>
+
+<p>という理由のため今回は除外しました。</p>
+
+<h1 id="toc_3">コミット数の変遷</h1>
+
+<p>次は2010年から2014年の月毎のコミット数の変遷です。</p>
+
+<!-- ![commits per month](http://machortz.github.io/img/20150101/commitspermonth.png) -->
+
+<p><a href="../../img/20150101/commitspermonth.png" rel="lightbox">
+    <img src="../../img/20150101/commitspermonth.png" alt="" width="500" /></a></p>
+
+<p>お、なんかperiodicalですね。</p>
+
+<p>ちなみに2010年以降のAdroidの大きな動きは以下の通りです:参考<a href="http://ja.wikipedia.org/wiki/Android%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%B1%A5%E6%AD%B4#Android_2.2_
+Froyo">wiki</a></p>
+
+<ul>
+<li>Froyo(2.2)リリース 2010年5月〜6月頃</li>
+<li>GB(2.3)リリース 2010年12月頃</li>
+<li>Honeycomb(3.x)リリース 2011年2, 5, 7月あたり（もはやなかったことになっている希ガス）</li>
+<li>ICS(4.0)リリース 2011年10月〜2012年3月</li>
+<li>JB(4.1)リリース 2012年7月, 10月</li>
+<li>JB(4.2)リリース 2012年11月, 2013年3月</li>
+<li>JB(4.3)リリース 2013年7月</li>
+<li>KK(4.4)リリース 2013年10月, 12月、2014年6月</li>
+<li>L(5.0)リリース 2014年11月</li>
+</ul>
+
+<h1 id="toc_4">コミッタ（Author）の内訳</h1>
+
+<p>次はコミッタの内訳です。
+どの企業や組織が多くコミットしているか気になりますよね。</p>
+
+<p>コミットログのAuthorのメールアドレスからドメイン別に集計しました。</p>
+
+<h2 id="toc_5">全ドメインの内訳</h2>
+
+<p>まずはすべてのドメインを対象に内訳を出したものが下の10個の円グラフです。
+10個あるのは、2010年から2014年を10等分したことによるものです。</p>
+
+<!-- ![author-pi-all](http://machortz.github.io/img/20150101/author-pi-all.png) -->
+
+<p><a href="../../img/20150101/author-pi-all.png" rel="lightbox">
+    <img src="../../img/20150101/author-pi-all.png" alt="" width="500" /></a></p>
+
+<p>すぐにわかりますが、google.comとandroid.comが支配的ですね。当然ですね。</p>
+
+<p>Othersの組成が気になります。
+AOSPのコミットログで稀によく目にするソニーさんはどれくらいなんでしょうか。</p>
+
+<h2 id="toc_6">google.comとandroid.com以外のドメインの内訳</h2>
+
+<p>次に上の10個の円グラフそれぞれについて、Othersをさらに分解してみます。</p>
+
+<p>下の10個の円グラフがOthersを分解したものです。
+円グラフの位置は上図（全ドメイン内訳）と対応しています。</p>
+
+<!-- ![author-pi-others](http://machortz.github.io/img/20150101/author-pi-others.png) -->
+
+<!-- ![author-pi-others](../../img/20150101/author-pi-others.png) -->
+
+<p><a href="../../img/20150101/author-pi-others.png" rel="lightbox">
+    <img src="../../img/20150101/author-pi-others.png" alt="" width="500" /></a></p>
+
+<p>端末ベンダやチップベンダが貢献しているのがわかります。</p>
+
+<p>ということで、かなりやっつけですが以上です。</p>
+
+<p>今後はさらに詳細な調査や考察をしていきたいです（小並感</p>
+
+<p>来年から本ry</p>
+
+	
+			
+
+			
+				<div class="tags-list">
+					<span class="dark-red">Tags</span><span class="decorative-marker">//</span>
+					
+	                <a class="post-tag post-tag-aosp" href="/tags/aosp">aosp</a>, 
+	                
+	                <a class="post-tag post-tag-android" href="/tags/android">android</a>, 
+	                
+				</div>
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/posts/usinghugo/">Hugoを使ってみたときのメモ</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2015. All rights reserved. </p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>

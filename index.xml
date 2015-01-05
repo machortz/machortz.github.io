@@ -7,7 +7,20 @@
     <language>ja-JP</language>
     <author>machortz</author>
     
-    <updated>Thu, 01 Jan 2015 04:09:53 JST</updated>
+    <updated>Tue, 06 Jan 2015 05:57:30 JST</updated>
+    
+    <item>
+      <title>about</title>
+      <link>http://machortz.github.io/aboutme/</link>
+      <pubDate>Tue, 06 Jan 2015 05:57:30 JST</pubDate>
+      <author>machortz</author>
+      <guid>http://machortz.github.io/aboutme/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;エンジニア&lt;/li&gt;
+&lt;li&gt;machortz [at] gmail.com&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Growth of the AOSP</title>

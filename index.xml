@@ -7,20 +7,7 @@
     <language>ja-JP</language>
     <author>machortz</author>
     
-    <updated>Tue, 06 Jan 2015 05:57:30 JST</updated>
-    
-    <item>
-      <title>About Me</title>
-      <link>http://machortz.github.io/aboutme/</link>
-      <pubDate>Tue, 06 Jan 2015 05:57:30 JST</pubDate>
-      <author>machortz</author>
-      <guid>http://machortz.github.io/aboutme/</guid>
-      <description>&lt;ul&gt;
-&lt;li&gt;エンジニア&lt;/li&gt;
-&lt;li&gt;machortz [at] gmail.com&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
+    <updated>Thu, 01 Jan 2015 04:09:53 JST</updated>
     
     <item>
       <title>Growth of the AOSP</title>
@@ -565,6 +552,19 @@ jオプションはmakeと同じで並列job数です。指定しない場合は
 &lt;p&gt;以上でまっさらのubuntu上でのビルドは特に滞りなくビルドできると思います。&lt;br /&gt;
 もしかして他になにか依存関係解決したり足りないモジュールをインストールしたような気もします。&lt;br /&gt;
 思い出しながら書いたので間違いやうまくいかないところなどあればご指摘ください。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>http://machortz.github.io/aboutme/</link>
+      <pubDate>Tue, 01 Jan 2008 00:00:00 UTC</pubDate>
+      <author>machortz</author>
+      <guid>http://machortz.github.io/aboutme/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;エンジニア&lt;/li&gt;
+&lt;li&gt;machortz [at] gmail.com&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
